@@ -22,13 +22,16 @@ private WebDriver navegador;
 
     @Before
     public void Setup(){
-      navegador = Navegador.InciarNavegador();
+      //navegador = Navegador.InciarNavegador();
+      navegador = Navegador.createBrowserStack();
     }
 
 
     @Test
-  public void Logar(@Param(name="email")String Email,@Param(name="senha") String senha){
-     new LogarPage(navegador)
+public void Logar(@Param(name="email")String Email,@Param(name="senha") String senha){
+
+        //public void Logar(){
+        new LogarPage(navegador)
        .clicarSignIn()
        .digitarEmail(Email)
        .digitarSenha(senha)
@@ -36,6 +39,12 @@ private WebDriver navegador;
 
     }
 
-    //@After
+    @After
+    public void fechar(){
+
+      navegador.quit();
+
+    }
+
 
 }
